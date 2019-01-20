@@ -18,3 +18,6 @@ class Solution:
             else:
                 start = mid
         return min(nums[start], nums[end])
+
+
+
