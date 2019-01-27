@@ -5,28 +5,19 @@ class Solution:
     """
     def sortColors(self, nums):
         # write your code here
-        colors = {}
-        result = []
-        for i in range(len(nums)):
-            if nums[i] not in colors:
-                colors[nums[i]] = 1 
-            else:
-                colors[nums[i]] += 1 
-        print(colors)
+        if not nums:
+            return None 
+            
+        pl, pr = 0, len(nums) - 1 
+        i = 0
         
-        for i in range(len(nums)):
-            if colors[0] != 0 :
-                nums[i] = 0
-                colors[0] -= 1 
+        while i <= pr:
+            if nums[i] == 0:
+                nums[pl], nums[i] = nums[i], nums[pl]
+                i += 1 
+                pl += 1 
+            elif nums[i] == 1:
+                i += 1 
             else:
-                if colors[1] != 0:
-                    nums[i] = 1
-                    colors[1] -= 1
-                else:
-                    if colors[2] != 0:
-                        nums[i] = 2 
-                        colors[2] -= 1 
-                
-                
-        return nums
-                
+                nums[pr], nums[i] = nums[i], nums[pr]
+                pr -= 1 
